@@ -1,12 +1,18 @@
 import React from "react";
-import "./style.css";
+import styled from "styled-components";
+
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  background-color: #ffdee9;
+`;
 
 const Header = () => {
   return (
-    <div className="header_container">
+    <HeaderContainer>
       <p>My Todo List</p>
       <p>React</p>
-    </div>
+    </HeaderContainer>
   );
 };
 export default Header;

@@ -1,60 +1,78 @@
 import React from "react";
-import "./style.css";
 import Todo from "../todo/Todo";
+import styled from "styled-components";
+import { useSelector, useDispatch } from "react-redux";
+import { complettodo } from "../../redux/modules/todos";
+import { removetodo } from "../../redux/modules/todos";
 
-const List = ({ inputs, setInputs }) => {
+const TodoConSt = styled.div`
+  display: flex;
+`;
+
+const List = ({ todos, setTodos }) => {
+  const dispatch = useDispatch();
+  const todo_list = useSelector((state) => state.todos);
+
   const onRemove = (id) => {
-    setInputs(
-      inputs.filter((v) => {
-        return v.id !== id;
-      })
+    dispatch(
+      removetodo(
+        todos.filter((todo) => {
+          return todo.id !== id;
+        })
+      )
     );
   };
 
+  // console.log(todo_list[0].isDone);
   const onComplete = (id) => {
-    setInputs(
-      inputs.map((v) => {
-        if (v.id == id) {
-          if (v.isDone == true) {
-            v.isDone = !v.isDone;
-          } else if (v.isDone == false) {
-            v.isDone = !v.isDone;
+    dispatch(
+      complettodo(
+        todo_list.map((todo) => {
+          if (todo.id == id) {
+            if (todo.isDone == true) {
+              todo.isDone = !todo.isDone;
+            } else if (todo.isDone == false) {
+              todo.isDone = !todo.isDone;
+            }
           }
-        }
-        return v;
-      })
+          return todo;
+        })
+      )
     );
   };
+  const complete_list = useSelector((state) => state.todos);
+
   return (
     <div>
-      <h1>할일</h1>
-      <div className="todo_container">
-        {inputs.map((v) => {
-          if (!v.isDone) {
+      <h1>🔥 해야할 일 🔥</h1>
+
+      <TodoConSt>
+        {complete_list.map((todo) => {
+          if (!todo.isDone) {
             return (
-              <div key={v.id}>
-                <Todo input={v} onRemove={onRemove} onComplete={onComplete} />
+              <div key={todo.id}>
+                <Todo todo={todo} onRemove={onRemove} onComplete={onComplete} />
               </div>
             );
           } else {
             return null;
           }
         })}
-      </div>
-      <h1>한일</h1>
-      <div className="todo_container">
-        {inputs.map((v) => {
-          if (v.isDone) {
+      </TodoConSt>
+      <h1>💛 완료한 일 💛</h1>
+      <TodoConSt>
+        {todo_list.map((todo) => {
+          if (todo.isDone) {
             return (
-              <div key={v.id}>
-                <Todo input={v} onRemove={onRemove} onComplete={onComplete} />
+              <div key={todo.id}>
+                <Todo todo={todo} onRemove={onRemove} onComplete={onComplete} />
               </div>
             );
           } else {
             return null;
           }
         })}
-      </div>
+      </TodoConSt>
     </div>
   );
 };

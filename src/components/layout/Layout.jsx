@@ -1,13 +1,19 @@
 import React from "react";
-import "./style.css";
 import Header from "../header/Header";
+import styled from "styled-components";
+
+const LayoutSt = styled.div`
+  max-width: 1200px;
+  min-width: 800px;
+  margin: auto;
+`;
 
 const Layout = (props) => {
   return (
-    <div className="layout_container">
+    <LayoutSt>
       <Header />
       {props.children}
-    </div>
+    </LayoutSt>
   );
 };
 export default Layout;
