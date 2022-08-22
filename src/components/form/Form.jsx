@@ -30,7 +30,7 @@ const BtnSt = styled.button`
   border: none;
 `;
 
-const Form = ({ todos, setTodos }) => {
+const Form = () => {
   const title = useRef(null);
   const content = useRef(null);
 
@@ -45,7 +45,6 @@ const Form = ({ todos, setTodos }) => {
         isDone: false,
       })
     );
-
     title.current.value = "";
     content.current.value = "";
   };
