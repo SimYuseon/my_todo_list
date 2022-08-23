@@ -52,18 +52,10 @@ const todos = (state = initialState, action) => {
       return { todosList: [...state.todosList, action.newtodo] }; // state에 action.payload({id: 2, title: 'ffff', content: 'ffff', isDone: false})++
 
     case "COMPLETE_TODO":
-      console.log(state.todosList);
-      console.log(...state.todosList);
-      return {
-        todosList: [
-          state.todosList.map((todo) => {
-            return (
-              todo.id == action.id ? { ...todo, isDone: !todo.isDone } : todo,
-              console.log(...state.todosList)
-            );
-          }),
-        ],
-      };
+      const newTodoList = state.todosList.map((todo) => {
+        return todo.id == action.id ? { ...todo, isDone: !todo.isDone } : todo;
+      });
+      return { todosList: newTodoList };
 
     case "REMOVE_TODO":
       return {

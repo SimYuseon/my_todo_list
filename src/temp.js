@@ -1,8 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Header = styled.div`
   display: flex;
@@ -10,19 +9,27 @@ const Header = styled.div`
 `;
 
 const Detail = () => {
-  const todolist = useSelector((state) => state.todos);
-  console.log(todolist);
-  const navigate = Navigate();
+  const todolist = useSelector((state) => state.todos.todosList);
+  console.log(typeof [...todolist]);
+
+  const navigate = useNavigate();
+
   const params = useParams();
   let id = params.id;
+  console.log(id);
+
+  const todo = todolist.filter((t) => {
+    return t.id === Number(id);
+  });
+  console.log(typeof todo);
   return (
     <div>
-      {todolist.filter((pro) => {
-        if (pro.id == Number(id))
+      {todolist.filter((t) => {
+        if (t.id === Number(id))
           return (
             <div>
               <Header>
-                <p>id:{pro.id}</p>
+                <p>id:{t.id}</p>
                 <button
                   onClick={() => {
                     navigate(-1);
@@ -31,10 +38,11 @@ const Detail = () => {
                   이전으로
                 </button>
               </Header>
-              <h1>{pro.title}</h1>
-              <p>{pro.content}</p>
+              <h1>{t.title}</h1>
+              <p>{t.content}</p>
             </div>
           );
+        console.log(t.content);
       })}
     </div>
   );

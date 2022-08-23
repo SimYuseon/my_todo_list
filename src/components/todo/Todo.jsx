@@ -30,6 +30,7 @@ const Todo = ({ onetodo }) => {
       <p
         onClick={() => {
           navigate("/Detail/" + onetodo.id);
+          console.log(onetodo.id);
         }}
       >
         상세보기

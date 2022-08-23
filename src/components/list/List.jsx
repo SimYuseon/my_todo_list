@@ -27,7 +27,9 @@ const List = () => {
         {todos
           .filter((todo) => !todo.isDone)
           .map((onetodo) => (
-            <Todo onetodo={onetodo} key={onetodo.id} />
+            <div key={onetodo.id}>
+              <Todo onetodo={onetodo} />
+            </div>
           ))}
       </TodoConSt>
       <h1>💛 완료한 일 💛</h1>
@@ -35,7 +37,9 @@ const List = () => {
         {todos
           .filter((todo) => todo.isDone)
           .map((onetodo) => (
-            <Todo onetodo={onetodo} key={onetodo.id} />
+            <div key={onetodo.id}>
+              <Todo onetodo={onetodo} />
+            </div>
           ))}
       </TodoConSt>
     </div>
