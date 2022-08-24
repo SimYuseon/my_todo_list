@@ -17,22 +17,22 @@ const BackBtn = styled.button`
 
 const Detail = () => {
   const todolist = useSelector((state) => state.todos.todosList);
-  console.log(typeof [...todolist]);
+  console.log(todolist);
 
   const navigate = useNavigate();
 
   const params = useParams();
   let id = params.id;
-  console.log(id);
 
-  const todo = todolist.filter((t) => {
+  const todo = todolist.findIndex((t) => {
     return t.id === Number(id);
   });
-  console.log(typeof todo);
+  console.log(todo);
+  console.log(todolist[todo]);
   return (
     <div>
       <Header>
-        <p>id:{todo[0].id}</p>
+        <p>id:{todolist[todo].id}</p>
         <BackBtn
           onClick={() => {
             navigate(-1);
@@ -41,8 +41,8 @@ const Detail = () => {
           이전으로
         </BackBtn>
       </Header>
-      <h1>{todo[0].title}</h1>
-      <p>{todo[0].content}</p>
+      <h1>{todolist[todo].title}</h1>
+      <p>{todolist[todo].content}</p>
     </div>
   );
 };
