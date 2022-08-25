@@ -1,10 +1,10 @@
 import React from "react";
-import { useRef } from "react";
 import styled from "styled-components";
+import { useRef } from "react";
 import { useDispatch } from "react-redux/es/exports";
-import { addtodo } from "../../redux/modules/todos";
+import { addTodo } from "../../redux/modules/todos";
 
-const FormSt = styled.div`
+const FormContainer = styled.div`
   background-color: #ffff8c;
   padding: 20px;
   border-radius: 15px;
@@ -12,17 +12,17 @@ const FormSt = styled.div`
   justify-content: space-between;
 `;
 
-const InputSt = styled.input`
+const InputStyle = styled.input`
   height: 30px;
   border-radius: 5px;
   border: none;
   margin-right: 20px;
 `;
 
-const LabelSt = styled.label`
+const LabelStyle = styled.label`
   margin-right: 20px;
 `;
-const BtnSt = styled.button`
+const ButtonStyle = styled.button`
   background-color: #ffdee9;
   height: 30px;
   border-radius: 10px;
@@ -38,8 +38,8 @@ const Form = () => {
 
   const addClick = () => {
     dispatch(
-      addtodo({
-        id: new Date().getTime() + Math.random(),
+      addTodo({
+        id: Math.floor(new Date().getTime() + Math.random()),
         title: title.current.value,
         content: content.current.value,
         isDone: false,
@@ -50,16 +50,16 @@ const Form = () => {
   };
 
   return (
-    <FormSt>
+    <FormContainer>
       <div>
-        <LabelSt htmlFor="title_input">제목</LabelSt>
-        <InputSt className="title_input" type="text" ref={title} />
-        <LabelSt htmlFor="content_input">내용</LabelSt>
-        <InputSt className="content_input" type="text" ref={content} />
+        <LabelStyle htmlFor="title_input">제목</LabelStyle>
+        <InputStyle className="title_input" type="text" ref={title} />
+        <LabelStyle htmlFor="content_input">내용</LabelStyle>
+        <InputStyle className="content_input" type="text" ref={content} />
       </div>
 
-      <BtnSt onClick={addClick}>추가</BtnSt>
-    </FormSt>
+      <ButtonStyle onClick={addClick}>추가</ButtonStyle>
+    </FormContainer>
   );
 };
 export default Form;

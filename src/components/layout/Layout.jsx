@@ -2,7 +2,7 @@ import React from "react";
 import Header from "../header/Header";
 import styled from "styled-components";
 
-const LayoutSt = styled.div`
+const LayoutStyle = styled.div`
   max-width: 1200px;
   min-width: 800px;
   margin: auto;
@@ -10,10 +10,10 @@ const LayoutSt = styled.div`
 
 const Layout = (props) => {
   return (
-    <LayoutSt>
+    <LayoutStyle>
       <Header />
       {props.children}
-    </LayoutSt>
+    </LayoutStyle>
   );
 };
 export default Layout;

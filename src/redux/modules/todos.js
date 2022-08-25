@@ -6,21 +6,21 @@ const REMOVE_TODO = "REMOVE_TODO";
 
 //action creator
 
-export const addtodo = (newtodo) => {
+export const addTodo = (newtodo) => {
   return {
     type: ADD_TODO,
     newtodo,
   };
 };
 
-export const complettodo = (id) => {
+export const completTodo = (id) => {
   return {
     type: COMPLETE_TODO,
     id,
   };
 };
 
-export const removetodo = (id) => {
+export const removeTodo = (id) => {
   return {
     type: REMOVE_TODO,
     id,

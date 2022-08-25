@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 
 const Header = styled.div`
@@ -17,18 +17,12 @@ const BackBtn = styled.button`
 
 const Detail = () => {
   const todolist = useSelector((state) => state.todos.todosList);
-  console.log(todolist);
-
   const navigate = useNavigate();
-
   const params = useParams();
   let id = params.id;
-
   const todo = todolist.findIndex((t) => {
     return t.id === Number(id);
   });
-  console.log(todo);
-  console.log(todolist[todo]);
   return (
     <div>
       <Header>

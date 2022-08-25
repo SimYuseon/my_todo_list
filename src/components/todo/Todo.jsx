@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { removetodo, complettodo } from "../../redux/modules/todos";
+import { removeTodo, completTodo } from "../../redux/modules/todos";
 import { useNavigate } from "react-router-dom";
 
 const TodoBox = styled.div`
@@ -11,10 +11,10 @@ const TodoBox = styled.div`
   margin: 0px 20px;
 `;
 
-const H1St = styled.h1`
+const TitleStyle = styled.h1`
   margin: 0;
 `;
-const BtnSt = styled.button`
+const ButtonStyle = styled.button`
   height: 30px;
   border-radius: 10px;
   padding: 0px 30px;
@@ -29,20 +29,26 @@ const Todo = ({ onetodo }) => {
     <TodoBox>
       <p
         onClick={() => {
-          navigate("/Detail/" + onetodo.id);
+          navigate("/detail/" + onetodo.id);
           console.log(onetodo.id);
         }}
       >
         상세보기
       </p>
-      <H1St>{onetodo.title}</H1St>
+      <TitleStyle>{onetodo.title}</TitleStyle>
       <p>{onetodo.content}</p>
-      <BtnSt border="#ffff8c" onClick={() => dispatch(complettodo(onetodo.id))}>
+      <ButtonStyle
+        border="#ffff8c"
+        onClick={() => dispatch(completTodo(onetodo.id))}
+      >
         {!onetodo.isDone ? "완료" : "취소"}
-      </BtnSt>
-      <BtnSt border="#ffdee9" onClick={() => dispatch(removetodo(onetodo.id))}>
+      </ButtonStyle>
+      <ButtonStyle
+        border="#ffdee9"
+        onClick={() => dispatch(removeTodo(onetodo.id))}
+      >
         삭제
-      </BtnSt>
+      </ButtonStyle>
     </TodoBox>
   );
 };
