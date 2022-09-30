@@ -4,27 +4,10 @@ import { useDispatch } from "react-redux";
 import { removeTodo, completTodo } from "../../redux/modules/todos";
 import { useNavigate } from "react-router-dom";
 
-const TodoBox = styled.div`
-  border: 2px solid skyblue;
-  border-radius: 15px;
-  padding: 20px;
-  margin: 0px 20px;
-`;
-
-const TitleStyle = styled.h1`
-  margin: 0;
-`;
-const ButtonStyle = styled.button`
-  height: 30px;
-  border-radius: 10px;
-  padding: 0px 30px;
-  border: solid 2px ${(props) => props.border};
-  background-color: white;
-`;
-
 const Todo = ({ onetodo }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   return (
     <TodoBox>
       <p
@@ -52,4 +35,21 @@ const Todo = ({ onetodo }) => {
     </TodoBox>
   );
 };
+const TodoBox = styled.div`
+  border: 2px solid skyblue;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 0px 20px;
+`;
+
+const TitleStyle = styled.h1`
+  margin: 0;
+`;
+const ButtonStyle = styled.button`
+  height: 30px;
+  border-radius: 10px;
+  padding: 0px 30px;
+  border: solid 2px ${(props) => props.border};
+  background-color: white;
+`;
 export default Todo;
